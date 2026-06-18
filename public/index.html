@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LearnFlow | E-Learning Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="LearnFlow home">
+        <span class="brand-mark">LF</span>
+        <span>LearnFlow</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#courses">Courses</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#api">REST API</a>
+      </nav>
+      <button class="button ghost" id="logoutButton" hidden>Logout</button>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-copy">
+          <p class="eyebrow">Full-stack learning workspace</p>
+          <h1>Learn web development, backend APIs, Python workflows, and MySQL.</h1>
+          <p>
+            Browse courses, create a learner account, enroll, and track progress through a clean
+            REST-powered e-learning platform.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#courses">Explore courses</a>
+            <a class="button secondary" href="#dashboard">Open dashboard</a>
+          </div>
+        </div>
+        <div class="hero-panel" aria-label="Platform stats">
+          <div>
+            <strong id="courseCount">0</strong>
+            <span>Courses</span>
+          </div>
+          <div>
+            <strong>REST</strong>
+            <span>API backend</span>
+          </div>
+          <div>
+            <strong>MySQL</strong>
+            <span>Ready schema</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="courses">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Course catalog</p>
+            <h2>Pick your next skill</h2>
+          </div>
+          <div class="filters">
+            <input id="searchInput" type="search" placeholder="Search courses" />
+            <select id="categorySelect" aria-label="Filter courses by category">
+              <option value="">All categories</option>
+              <option value="Web Development">Web Development</option>
+              <option value="Backend">Backend</option>
+              <option value="Python">Python</option>
+              <option value="Database">Database</option>
+            </select>
+          </div>
+        </div>
+        <div class="course-grid" id="courseGrid" aria-live="polite"></div>
+      </section>
+
+      <section class="section split" id="dashboard">
+        <div class="auth-panel">
+          <p class="eyebrow">Learner account</p>
+          <h2 id="authTitle">Sign in or create an account</h2>
+          <div class="account-summary" id="accountSummary" hidden>
+            <strong id="accountName">Learner</strong>
+            <span id="accountEmail">learner@example.com</span>
+            <button class="button secondary" id="panelLogoutButton" type="button">Logout</button>
+          </div>
+          <div class="tabs" role="tablist" aria-label="Authentication mode">
+            <button class="tab active" data-mode="login" type="button">Login</button>
+            <button class="tab" data-mode="register" type="button">Register</button>
+          </div>
+          <form id="authForm" class="auth-form">
+            <label class="register-only" hidden>
+              Name
+              <input name="name" type="text" autocomplete="name" placeholder="Your name" />
+            </label>
+            <label>
+              Email
+              <input
+                name="email"
+                type="email"
+                autocomplete="email"
+                value="learner@example.com"
+                required
+              />
+            </label>
+            <label>
+              Password
+              <input
+                name="password"
+                type="password"
+                autocomplete="current-password"
+                value="password123"
+                required
+              />
+            </label>
+            <button class="button primary" type="submit" id="authSubmit">Login</button>
+            <p class="form-message" id="authMessage" role="status"></p>
+          </form>
+        </div>
+
+        <div class="dashboard-panel">
+          <div class="section-heading compact">
+            <div>
+              <p class="eyebrow">My learning</p>
+              <h2 id="dashboardTitle">Demo dashboard</h2>
+            </div>
+            <button class="button secondary" id="refreshEnrollments" type="button">Refresh</button>
+          </div>
+          <div class="enrollment-list" id="enrollmentList">
+            <p class="muted">Login to view your enrolled courses.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section api-band" id="api">
+        <div>
+          <p class="eyebrow">Backend routes</p>
+          <h2>RESTful API included</h2>
+          <p>
+            The Node.js backend exposes course search, authentication, enrollment, and learner
+            dashboard endpoints. MySQL tables are ready in <code>database/schema.sql</code>.
+          </p>
+        </div>
+        <div class="endpoint-list">
+          <code>GET /api/courses</code>
+          <code>POST /api/auth/register</code>
+          <code>POST /api/auth/login</code>
+          <code>POST /api/courses/:id/enroll</code>
+          <code>GET /api/me/enrollments</code>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>LearnFlow</span>
+      <span>HTML, CSS, JavaScript, Node.js, Python, REST API, SQL, MySQL</span>
+    </footer>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
