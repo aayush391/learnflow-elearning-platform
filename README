@@ -1,0 +1,117 @@
+# LearnFlow E-Learning Platform
+
+LearnFlow is a full-stack e-learning platform built with the technologies you listed:
+
+- Frontend: HTML, CSS, JavaScript
+- Backend: Node.js and Express
+- Database: SQL and MySQL
+- API style: RESTful API
+- Python: utility script for exporting seed course data
+
+The app includes course search, authentication, enrollment, and a learner dashboard. It also runs without MySQL by using demo memory data, which makes it easy to deploy a live demo.
+
+## Features
+
+- Responsive landing and course catalog UI
+- Search and category filtering
+- Login and registration with hashed passwords
+- JWT-based API authentication
+- Course enrollment endpoint
+- Learner dashboard with progress
+- MySQL schema and seed data
+- Python CSV seed export utility
+
+## Project Structure
+
+```text
+api/index.js             Vercel serverless entrypoint
+database/schema.sql      MySQL table definitions
+database/seed.sql        Sample users, courses, and enrollments
+public/                  HTML, CSS, and browser JavaScript
+scripts/seed_courses.py  Python seed export script
+src/app.js               Express REST API
+src/db.js                MySQL connection pool
+src/demoData.js          In-memory demo data
+server.js                Local Node server entrypoint
+```
+
+## Run Locally
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the app:
+
+```bash
+npm run dev
+```
+
+Open:
+
+```text
+http://localhost:3000
+```
+
+Demo login:
+
+```text
+Email: learner@example.com
+Password: password123
+```
+
+## Connect MySQL
+
+Create the database and tables:
+
+```bash
+mysql -u root -p < database/schema.sql
+mysql -u root -p < database/seed.sql
+```
+
+Copy `.env.example` to `.env`, then update the database values:
+
+```text
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=your_password
+DB_NAME=learnflow
+JWT_SECRET=your_long_secret
+```
+
+Restart the server after updating `.env`.
+
+## REST API
+
+```text
+GET    /api/health
+GET    /api/courses
+GET    /api/courses/:id
+POST   /api/auth/register
+POST   /api/auth/login
+POST   /api/courses/:id/enroll
+GET    /api/me/enrollments
+```
+
+Authenticated routes require:
+
+```text
+Authorization: Bearer <token>
+```
+
+## Python Utility
+
+Export the starter course list to CSV:
+
+```bash
+npm run seed:python
+```
+
+The generated file is saved at `outputs/courses_export.csv`.
+
+## Deployment
+
+This project includes `vercel.json` and `api/index.js`, so it can be deployed to Vercel. Without MySQL environment variables, the deployed demo uses in-memory sample data.
